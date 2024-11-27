@@ -107,7 +107,7 @@ export default function Navbar() {
             </li>
           </ul>
           <div className="cart-icon relative w-fit">
-            <i class="fa-solid fa-cart-shopping text-2xl"></i>
+            <i className="fa-solid fa-cart-shopping text-2xl"></i>
             <div className="card-count absolute h-5 w-5 translate-x-1/2 -top-3 right-0 bg-primary-600 rounded-md flex items-center justify-center text-white">
               <i className="fa-solid fa-spinner fa-spin text-sm"></i>
             </div>
@@ -139,7 +139,7 @@ export default function Navbar() {
             </li>
             <li>
               <Link to="">
-                <i class="fa-solid fa-right-from-bracket text-xl"></i>
+                <i className="fa-solid fa-right-from-bracket text-xl"></i>
               </Link>
             </li>
           </ul>

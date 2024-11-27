@@ -7,7 +7,9 @@ export default function Layout() {
   return (
     <>
       <Navbar />
-      <Outlet> </Outlet>
+      <div className="container py-10">
+        <Outlet> </Outlet>
+      </div>
       <Footer />
     </>
   );
