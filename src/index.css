@@ -4,3 +4,12 @@
 body {
   font-family: "Encode Sans Expanded", sans-serif;
 }
+
+@layer components {
+  .btn {
+    @apply bg-primary-600 text-white px-6 rounded-md py-2 hover:bg-primary-900 transition-[colors] duration-300 uppercase;
+  }
+  .form-controll {
+    @apply px-2 py-1 rounded-md focus:outline-none border-2 border-slate-400  border-opacity-50 focus:border-primary-600 focus:caret-primary-500;
+  }
+}
