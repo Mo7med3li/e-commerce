@@ -3,6 +3,9 @@ export default {
   content: ["./index.html", "./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
     extend: {
+      container: {
+        center: true,
+      },
       colors: {
         primary: {
           50: "#e7f7e7",
@@ -16,6 +19,9 @@ export default {
           800: "#23b523",
           900: "#0aad0a",
         },
+      },
+      screens: {
+        "2xl": "1320px",
       },
     },
   },
