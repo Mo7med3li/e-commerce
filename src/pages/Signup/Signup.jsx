@@ -14,8 +14,8 @@ export default function Signup() {
   const validationSchema = object({
     name: string()
       .required("Name is required")
-      .min(3, "Name should be at least 3")
-      .max(20, "Name should be less than 20 charachters"),
+      .min(3, "Name should be at least 3 characters")
+      .max(20, "Name should be less than 20 characters"),
     email: string().required("Email is required").email("Email is invalid"),
     password: string()
       .required("Password is required")
