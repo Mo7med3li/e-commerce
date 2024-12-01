@@ -3,6 +3,7 @@ import Card from "../../components/Card/Card";
 import Loading from "../../components/Loading/Loading";
 import { useEffect, useState } from "react";
 import HomeSlider from "../../components/HomeSlider/HomeSlider";
+import CategorySlider from "../../components/CategorySlider/CategorySlider";
 
 export default function Home() {
   const [products, setProducts] = useState(null);
@@ -12,7 +13,6 @@ export default function Home() {
       method: "GET",
     };
     let { data } = await axios.request(options);
-    console.log(data.data);
     setProducts(data.data);
   }
   useEffect(() => {
@@ -22,6 +22,7 @@ export default function Home() {
   return (
     <>
       <HomeSlider />
+      <CategorySlider />
       {products === null ? (
         <Loading />
       ) : (
