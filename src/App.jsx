@@ -7,14 +7,28 @@ import Login from "./pages/Login/Login";
 import Signup from "./pages/Signup/Signup";
 import Home from "./pages/Home/Home";
 import { ToastBar, Toaster } from "react-hot-toast";
+import ProtectedRoute from "./components/proutectedRoute/ProtectedRoute";
+import GuestedRoute from "./components/GuestedRoute/GuestedRoute";
 
 function App() {
   const router = createBrowserRouter([
     {
       path: "/",
-      element: <Layout />,
+      element: (
+        <ProtectedRoute>
+          <Layout />
+        </ProtectedRoute>
+      ),
+      children: [{ index: true, element: <Home /> }],
+    },
+    {
+      path: "/",
+      element: (
+        <GuestedRoute>
+          <Layout />
+        </GuestedRoute>
+      ),
       children: [
-        { index: true, element: <Home /> },
         { path: "/login", element: <Login /> },
         { path: "/signup", element: <Signup /> },
       ],
