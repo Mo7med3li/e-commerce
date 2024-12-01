@@ -8,7 +8,9 @@ export default function Layout() {
     <>
       <Navbar />
       <div className="container py-10">
-        <Outlet> </Outlet>
+        <div className="min-h-80">
+          <Outlet> </Outlet>
+        </div>
       </div>
       <Footer />
     </>

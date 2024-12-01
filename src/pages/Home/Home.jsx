@@ -1,5 +1,9 @@
-import React from "react";
+import Loading from "../../components/Loading/Loading";
 
 export default function Home() {
-  return <div>Home</div>;
+  return (
+    <>
+      <Loading />
+    </>
+  );
 }
