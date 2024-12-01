@@ -2,6 +2,7 @@ import axios from "axios";
 import Card from "../../components/Card/Card";
 import Loading from "../../components/Loading/Loading";
 import { useEffect, useState } from "react";
+import HomeSlider from "../../components/HomeSlider/HomeSlider";
 
 export default function Home() {
   const [products, setProducts] = useState(null);
@@ -20,6 +21,7 @@ export default function Home() {
 
   return (
     <>
+      <HomeSlider />
       {products === null ? (
         <Loading />
       ) : (
