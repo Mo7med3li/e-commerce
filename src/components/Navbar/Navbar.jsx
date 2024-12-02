@@ -138,7 +138,7 @@ export default function Navbar() {
               </NavLink>
             </li>
             <li>
-              <Link to="">
+              <Link to="/signup" onClick={() => {}}>
                 <i className="fa-solid fa-right-from-bracket text-xl"></i>
               </Link>
             </li>

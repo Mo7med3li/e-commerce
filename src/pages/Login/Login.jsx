@@ -1,11 +1,13 @@
 import axios from "axios";
 import { useFormik } from "formik";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { object, string } from "yup";
+import { userContext } from "../../context/User.context";
 
 export default function Login() {
+  let { setToken } = useContext(userContext);
   const navigate = useNavigate();
   const [emailPaswordError, setEmailPasswordError] = useState(null);
   const validationSchema = object({
@@ -23,6 +25,8 @@ export default function Login() {
       const { data } = await axios.request(options);
 
       if (data.message === "success") {
+        localStorage.setItem("token", data.token);
+        setToken(data.token);
         toast.success("Login Completed");
         setTimeout(() => {
           navigate("/");
