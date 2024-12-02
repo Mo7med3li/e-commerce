@@ -13,7 +13,7 @@ export default function CategorySlider() {
       method: "GET",
     };
     let { data } = await axios.request(options);
-    console.log(data.data);
+
     setCategories(data.data);
   }
   useEffect(() => {

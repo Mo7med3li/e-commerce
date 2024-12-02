@@ -10,6 +10,7 @@ import { ToastBar, Toaster } from "react-hot-toast";
 import ProtectedRoute from "./components/proutectedRoute/ProtectedRoute";
 import GuestedRoute from "./components/GuestedRoute/GuestedRoute";
 import UserProvider from "./context/User.context";
+import CartProvider from "./context/Cart.context";
 
 function App() {
   const router = createBrowserRouter([
@@ -39,7 +40,9 @@ function App() {
   return (
     <>
       <UserProvider>
-        <RouterProvider router={router} />
+        <CartProvider>
+          <RouterProvider router={router} />
+        </CartProvider>
       </UserProvider>
       <Toaster />
     </>

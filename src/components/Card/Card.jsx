@@ -1,6 +1,17 @@
+import { useContext } from "react";
+import { CartContext } from "../../context/Cart.context";
+
 export default function Card({ productInfo }) {
-  const { category, description, imageCover, title, price, ratingsAverage } =
-    productInfo;
+  const {
+    category,
+    description,
+    imageCover,
+    title,
+    price,
+    ratingsAverage,
+    id,
+  } = productInfo;
+  let { addProductToCart } = useContext(CartContext);
   return (
     <>
       <div className="card group/card rounded-lg shadow-lg overflow-hidden ">
@@ -10,7 +21,12 @@ export default function Card({ productInfo }) {
             <div className="icon cursor-pointer bg-primary-600 text-white w-7 h-7 flex justify-center items-center rounded-full">
               <i className="fa-solid fa-heart "></i>
             </div>
-            <div className="icon cursor-pointer bg-primary-600 text-white w-7 h-7 flex justify-center items-center rounded-full">
+            <div
+              className="icon cursor-pointer bg-primary-600 text-white w-7 h-7 flex justify-center items-center rounded-full "
+              onClick={() => {
+                addProductToCart({ productId: id });
+              }}
+            >
               <i className="fa-solid fa-cart-shopping "></i>
             </div>
             <div className="icon cursor-pointer bg-primary-600 text-white w-7 h-7 flex justify-center items-center rounded-full">
