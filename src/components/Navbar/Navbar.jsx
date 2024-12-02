@@ -2,9 +2,11 @@ import React, { useContext } from "react";
 import logo from "../../assets/images/freshcart-logo.svg";
 import { Link, NavLink } from "react-router-dom";
 import { userContext } from "../../context/User.context";
+import { CartContext } from "../../context/Cart.context";
 
 export default function Navbar() {
   let { token, logOuT } = useContext(userContext);
+  let { getCartProducts, numberOFCartProduct } = useContext(CartContext);
   return (
     <>
       <nav className="py-3 bg-slate-100 shadow-sm">
@@ -78,12 +80,12 @@ export default function Navbar() {
                   </NavLink>
                 </li>
               </ul>
-              <div className="cart-icon relative w-fit ms-auto">
+              <Link to="/cart" className="cart-icon relative w-fit ms-auto">
                 <i className="fa-solid fa-cart-shopping text-2xl"></i>
                 <div className="card-count absolute h-5 w-5 translate-x-1/2 -top-3 right-0 bg-primary-600 rounded-md flex items-center justify-center text-white">
-                  <span>0</span>{" "}
+                  <span>0</span>
                 </div>
-              </div>
+              </Link>
             </>
           )}
           <ul className={`flex gap-5 items-center ${!token && "ms-auto"} `}>

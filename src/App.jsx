@@ -11,6 +11,7 @@ import ProtectedRoute from "./components/proutectedRoute/ProtectedRoute";
 import GuestedRoute from "./components/GuestedRoute/GuestedRoute";
 import UserProvider from "./context/User.context";
 import CartProvider from "./context/Cart.context";
+import Cart from "./pages/Cart/Cart";
 
 function App() {
   const router = createBrowserRouter([
@@ -21,7 +22,10 @@ function App() {
           <Layout />
         </ProtectedRoute>
       ),
-      children: [{ index: true, element: <Home /> }],
+      children: [
+        { index: true, element: <Home /> },
+        { path: "/cart", element: <Cart /> },
+      ],
     },
     {
       path: "/",
