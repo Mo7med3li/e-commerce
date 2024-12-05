@@ -99,6 +99,24 @@ export default function CartProvider({ children }) {
       toast.dismiss(toastId);
     }
   }
+  async function UPdateProdcuntCount({ productId, count }) {
+    try {
+      const options = {
+        url: `https://ecommerce.routemisr.com/api/v1/cart/${productId}`,
+        method: "PUT",
+        headers: { token },
+        data: {
+          count,
+        },
+      };
+      let { data } = await axios.request(options);
+      console.log(data);
+
+      if (data.status === "success") {
+        setCartInfo(data);
+      }
+    } catch (error) {}
+  }
   return (
     <CartContext.Provider
       value={{
@@ -107,6 +125,7 @@ export default function CartProvider({ children }) {
         deleteCart,
         cartInfo,
         deleteCartProduct,
+        UPdateProdcuntCount,
       }}
     >
       {children}

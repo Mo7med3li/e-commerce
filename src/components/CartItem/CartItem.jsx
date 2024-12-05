@@ -4,7 +4,7 @@ import { CartContext } from "../../context/Cart.context";
 export default function CartItem({ productInfo }) {
   const { price, product, count } = productInfo;
 
-  const { deleteCartProduct } = useContext(CartContext);
+  const { deleteCartProduct, UPdateProdcuntCount } = useContext(CartContext);
 
   return (
     <>
@@ -25,8 +25,24 @@ export default function CartItem({ productInfo }) {
           <div className="count flex gap-5 items-center">
             <span className="text-xl  font-bold text-gray-600">{count}</span>
             <div className="icons flex flex-col gap-2">
-              <i className="fa-solid fa-circle-plus text-lg cursor-pointer"></i>
-              <i className="fa-solid fa-circle-minus  text-lg cursor-pointer"></i>
+              <i
+                className="fa-solid fa-circle-plus text-lg cursor-pointer"
+                onClick={() => {
+                  UPdateProdcuntCount({
+                    productId: product.id,
+                    count: count + 1,
+                  });
+                }}
+              ></i>
+              <i
+                className="fa-solid fa-circle-minus  text-lg cursor-pointer"
+                onClick={() => {
+                  UPdateProdcuntCount({
+                    productId: product.id,
+                    count: count - 1,
+                  });
+                }}
+              ></i>
             </div>
           </div>
           <h5>{price} L.E</h5>
