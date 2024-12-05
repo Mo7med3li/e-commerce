@@ -1,7 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
+import { CartContext } from "../../context/Cart.context";
 
 export default function CartItem({ productInfo }) {
   const { price, product, count } = productInfo;
+
+  const { deleteCartProduct } = useContext(CartContext);
 
   return (
     <>
@@ -28,7 +31,12 @@ export default function CartItem({ productInfo }) {
           </div>
           <h5>{price} L.E</h5>
         </div>
-        <button className="remove  flex items-center bg-gray-100 justify-center rounded-lg p-4  hover:bg-gray-200 transition-colors duration-300">
+        <button
+          className="remove  flex items-center bg-gray-100 justify-center rounded-lg p-4  hover:bg-gray-200 transition-colors duration-300"
+          onClick={() => {
+            deleteCartProduct({ productId: product.id });
+          }}
+        >
           <i className="fa-solid fa-circle-xmark"></i>
         </button>
       </div>
