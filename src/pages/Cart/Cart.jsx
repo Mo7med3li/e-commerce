@@ -5,7 +5,7 @@ import CartItem from "../../components/CartItem/CartItem";
 import { Link } from "react-router-dom";
 
 export default function Cart() {
-  const { getCartProducts, cartInfo } = useContext(CartContext);
+  const { getCartProducts, cartInfo, deleteCart } = useContext(CartContext);
   useEffect(() => {
     getCartProducts();
   }, []);
@@ -48,7 +48,10 @@ export default function Cart() {
                     {cartInfo.data.totalCartPrice}
                   </span>
                 </p>
-                <button className="btn bg-red-500 hover:bg-red-700 ">
+                <button
+                  className="btn bg-red-500 hover:bg-red-700 "
+                  onClick={deleteCart}
+                >
                   <i className="fa-solid fa-trash mr-2"></i>
                   Delete Card
                 </button>

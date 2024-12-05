@@ -2,12 +2,13 @@ import { createContext, useContext, useState } from "react";
 import { userContext } from "./User.context";
 import axios from "axios";
 import toast from "react-hot-toast";
+import { data } from "react-router-dom";
 
 export const CartContext = createContext(null);
 
 export default function CartProvider({ children }) {
   const { token } = useContext(userContext);
-  let [numberOFCartProduct, setNumberOfCArtProduct] = useState(0);
+
   let [cartInfo, setCartInfo] = useState(null);
 
   async function addProductToCart({ productId }) {
@@ -26,10 +27,9 @@ export default function CartProvider({ children }) {
 
       let { data } = await axios.request(options);
 
-      setNumberOfCArtProduct(data.numOfCartItems);
-
       if (data.status === "success") {
         toast.success(data.message);
+        getCartProducts();
       }
     } catch (error) {
       console.log(error);
@@ -76,12 +76,35 @@ export default function CartProvider({ children }) {
       toast.dismiss(toastID);
     }
   }
+  async function deleteCart() {
+    let toastId = toast.loading("Deleting Cart....");
+    try {
+      const options = {
+        url: `https://ecommerce.routemisr.com/api/v1/cart`,
+        method: "DELETe",
+        headers: {
+          token,
+        },
+      };
+      let { data } = await axios.request(options);
+      if (data.message === "success") {
+        toast.success("Cart Deleted");
+        setCartInfo({
+          numOfCartItems: 0,
+        });
+      }
+    } catch (error) {
+      console.log(error);
+    } finally {
+      toast.dismiss(toastId);
+    }
+  }
   return (
     <CartContext.Provider
       value={{
         addProductToCart,
         getCartProducts,
-        numberOFCartProduct,
+        deleteCart,
         cartInfo,
         deleteCartProduct,
       }}
