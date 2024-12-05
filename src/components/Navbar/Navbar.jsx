@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import logo from "../../assets/images/freshcart-logo.svg";
 import { Link, NavLink } from "react-router-dom";
 import { userContext } from "../../context/User.context";
@@ -6,10 +6,13 @@ import { CartContext } from "../../context/Cart.context";
 
 export default function Navbar() {
   let { token, logOuT } = useContext(userContext);
-  let { getCartProducts, numberOFCartProduct } = useContext(CartContext);
+  let { cartInfo, getCartProducts } = useContext(CartContext);
+  useEffect(() => {
+    getCartProducts();
+  }, []);
   return (
     <>
-      <nav className="py-3 bg-slate-100 shadow-sm">
+      <nav className="py-3 bg-slate-100 shadow fixed top-0 left-0 right-0 z-50 ">
         <div className="container flex items-center gap-12  ">
           <div className="logo">
             <a href="/">
@@ -83,7 +86,11 @@ export default function Navbar() {
               <Link to="/cart" className="cart-icon relative w-fit ms-auto">
                 <i className="fa-solid fa-cart-shopping text-2xl"></i>
                 <div className="card-count absolute h-5 w-5 translate-x-1/2 -top-3 right-0 bg-primary-600 rounded-md flex items-center justify-center text-white">
-                  <span>0</span>
+                  {cartInfo === null ? (
+                    <i className="fa-solid fa-spinner fa-spin"></i>
+                  ) : (
+                    <span>{cartInfo.numOfCartItems}</span>
+                  )}
                 </div>
               </Link>
             </>
