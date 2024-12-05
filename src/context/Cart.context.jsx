@@ -49,6 +49,7 @@ export default function CartProvider({ children }) {
       };
       let { data } = await axios.request(options);
       setCartInfo(data);
+      console.log(data);
     } catch (error) {
       console.log(error);
     }
