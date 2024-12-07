@@ -53,7 +53,7 @@ export default function Cart() {
                   onClick={deleteCart}
                 >
                   <i className="fa-solid fa-trash mr-2"></i>
-                  Delete Card
+                  Delete Cart
                 </button>
               </div>
             </>

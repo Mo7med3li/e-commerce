@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import { CartContext } from "../../context/Cart.context";
+import { Link, Links } from "react-router-dom";
 
 export default function Card({ productInfo }) {
   const {
@@ -29,16 +30,19 @@ export default function Card({ productInfo }) {
             >
               <i className="fa-solid fa-cart-shopping "></i>
             </div>
-            <div className="icon cursor-pointer bg-primary-600 text-white w-7 h-7 flex justify-center items-center rounded-full">
+            <Link
+              to={`/products/${id}`}
+              className="icon cursor-pointer bg-primary-600 text-white w-7 h-7 flex justify-center items-center rounded-full"
+            >
               <i className="fa-solid fa-eye "></i>
-            </div>
+            </Link>
           </div>
         </div>
         <div className="card-body space-y-3 p-4">
           <header className="space-y-1">
             <h2 className=" text-primary-600 font-semibold">{category.name}</h2>
             <h3 className="text-xl text-slate-800 font-semibold line-clamp-1">
-              {title}
+              <Link to={`products/${id}`}>{title}</Link>
             </h3>
           </header>
           <p className="line-clamp-2 text-sm text-gray-500 ">{description}</p>

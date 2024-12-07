@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import { CartContext } from "../../context/Cart.context";
+import { Link } from "react-router-dom";
 
 export default function CartItem({ productInfo }) {
   const { price, product, count } = productInfo;
@@ -16,7 +17,7 @@ export default function CartItem({ productInfo }) {
             className="w-24 h-24 rounded-full border-4 border-white object-cover"
           />
           <h3 className="text-lg text-gray-700 font-semibold">
-            {product.title}
+            <Link to={`/products/${product.id}`}> {product.title}</Link>
           </h3>
 
           <h4 className="  text-gray-500 font-semibold">

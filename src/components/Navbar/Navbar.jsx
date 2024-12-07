@@ -41,7 +41,7 @@ export default function Navbar() {
                         isActive ? "before:!w-full font-semibold" : ""
                       }`;
                     }}
-                    to="/products"
+                    to="/products/1"
                   >
                     Products
                   </NavLink>
