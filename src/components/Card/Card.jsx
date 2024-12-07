@@ -42,7 +42,7 @@ export default function Card({ productInfo }) {
           <header className="space-y-1">
             <h2 className=" text-primary-600 font-semibold">{category.name}</h2>
             <h3 className="text-xl text-slate-800 font-semibold line-clamp-1">
-              <Link to={`products/${id}`}>{title}</Link>
+              <Link to={`/products/${id}`}>{title}</Link>
             </h3>
           </header>
           <p className="line-clamp-2 text-sm text-gray-500 ">{description}</p>

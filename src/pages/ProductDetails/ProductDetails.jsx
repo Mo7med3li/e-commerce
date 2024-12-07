@@ -4,12 +4,16 @@ import Loading from "../../components/Loading/Loading";
 import { useParams } from "react-router-dom";
 import { CartContext } from "../../context/Cart.context";
 import ReactImageGallery from "react-image-gallery";
-import { Thumbs } from "swiper/modules";
+
+import { SwiperSlide, Swiper } from "swiper/react";
+import "swiper/css";
+import Card from "../../components/Card/Card";
 
 export default function ProductDetails() {
   let { id } = useParams();
   let { addProductToCart } = useContext(CartContext);
   let [productinfo, setProductInfo] = useState(null);
+  let [relatedProduct, setRelatedProduct] = useState(null);
   async function getProductDetails() {
     try {
       const options = {
@@ -23,10 +27,26 @@ export default function ProductDetails() {
       console.log(error);
     }
   }
-
+  async function getRelatedProducts() {
+    try {
+      const options = {
+        url: `https://ecommerce.routemisr.com/api/v1/products?category[in]=${productinfo.category._id}`,
+        method: "GET",
+      };
+      let { data } = await axios.request(options);
+      console.log(data.data);
+      setRelatedProduct(data.data);
+    } catch (error) {
+      console.log(error);
+    }
+  }
   useEffect(() => {
     getProductDetails();
   }, []);
+  useEffect(() => {
+    if (productinfo === null) return;
+    getRelatedProducts();
+  }, [productinfo]);
 
   return (
     <>
@@ -79,6 +99,22 @@ export default function ProductDetails() {
                 </button>
               </div>
             </div>
+          </section>
+          <section>
+            <h2 className="text-2xl font-semibold text-gray-600 my-8">
+              Related Products
+            </h2>
+            {relatedProduct === null ? (
+              <Loading />
+            ) : (
+              <Swiper slidesPerView={6} spaceBetween={15}>
+                {relatedProduct.map((product) => (
+                  <SwiperSlide key={product.id}>
+                    <Card productInfo={product} />
+                  </SwiperSlide>
+                ))}
+              </Swiper>
+            )}
           </section>
         </>
       )}
