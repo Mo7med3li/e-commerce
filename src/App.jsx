@@ -14,6 +14,7 @@ import CartProvider from "./context/Cart.context";
 import Cart from "./pages/Cart/Cart";
 import ProductDetails from "./pages/ProductDetails/ProductDetails";
 import Checkout from "./pages/Checkout/Checkout";
+import Orders from "./pages/Orders/Orders";
 
 function App() {
   const router = createBrowserRouter([
@@ -29,6 +30,7 @@ function App() {
         { path: "/cart", element: <Cart /> },
         { path: "/products/:id", element: <ProductDetails /> },
         { path: "/checkout", element: <Checkout /> },
+        { path: "/allorders", element: <Orders /> },
       ],
     },
     {

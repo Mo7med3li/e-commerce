@@ -77,7 +77,7 @@ export default function Navbar() {
                         isActive ? "before:!w-full font-semibold" : ""
                       }`;
                     }}
-                    to="/orders"
+                    to="/allorders"
                   >
                     Orders
                   </NavLink>
