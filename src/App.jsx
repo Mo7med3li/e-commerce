@@ -13,6 +13,7 @@ import UserProvider from "./context/User.context";
 import CartProvider from "./context/Cart.context";
 import Cart from "./pages/Cart/Cart";
 import ProductDetails from "./pages/ProductDetails/ProductDetails";
+import Checkout from "./pages/Checkout/Checkout";
 
 function App() {
   const router = createBrowserRouter([
@@ -27,6 +28,7 @@ function App() {
         { index: true, element: <Home /> },
         { path: "/cart", element: <Cart /> },
         { path: "/products/:id", element: <ProductDetails /> },
+        { path: "/checkout", element: <Checkout /> },
       ],
     },
     {

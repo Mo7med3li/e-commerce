@@ -42,7 +42,7 @@ export default function ProductDetails() {
   }
   useEffect(() => {
     getProductDetails();
-  }, []);
+  }, [id]);
   useEffect(() => {
     if (productinfo === null) return;
     getRelatedProducts();

@@ -56,6 +56,12 @@ export default function Cart() {
                   Delete Cart
                 </button>
               </div>
+              <Link
+                to="/checkout"
+                className="btn w-full inline-block text-center"
+              >
+                Next Step
+              </Link>
             </>
           )}
         </section>
