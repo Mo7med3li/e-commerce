@@ -8,8 +8,10 @@ import ReactImageGallery from "react-image-gallery";
 import { SwiperSlide, Swiper } from "swiper/react";
 import "swiper/css";
 import Card from "../../components/Card/Card";
+import UseOnline from "../../hooks/UseOnline";
 
 export default function ProductDetails() {
+  const isOnline = UseOnline();
   let { id } = useParams();
   let { addProductToCart } = useContext(CartContext);
   let [productinfo, setProductInfo] = useState(null);
@@ -89,14 +91,16 @@ export default function ProductDetails() {
                     <span>{productinfo.ratingsAverage}</span>
                   </div>
                 </div>
-                <button
-                  className="btn w-full"
-                  onClick={() => {
-                    addProductToCart({ productId: id });
-                  }}
-                >
-                  Add To Cart
-                </button>
+                {isOnline && (
+                  <button
+                    className="btn w-full"
+                    onClick={() => {
+                      addProductToCart({ productId: id });
+                    }}
+                  >
+                    Add To Cart
+                  </button>
+                )}
               </div>
             </div>
           </section>
