@@ -1,6 +1,7 @@
 import axios from "axios";
 import { Formik, useFormik } from "formik";
 import React, { useState } from "react";
+import { Helmet } from "react-helmet";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { object, ref, string } from "yup";
@@ -68,6 +69,10 @@ export default function Signup() {
 
   return (
     <>
+      <Helmet>
+        <title>Signup</title>
+        <meta name="description" content="FreshCart| Signup Page" />
+      </Helmet>
       <h3 className=" text-xl font-semibold text-slate-700">
         <i className="fa-regular fa-user mr-2"></i>
         Register Now

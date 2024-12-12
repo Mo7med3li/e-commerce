@@ -4,6 +4,7 @@ import { userContext } from "../../context/User.context";
 import { jwtDecode } from "jwt-decode";
 import Loading from "../../components/Loading/Loading";
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet";
 
 export default function Orders() {
   const { token } = useContext(userContext);
@@ -23,6 +24,10 @@ export default function Orders() {
   }, []);
   return (
     <>
+      <Helmet>
+        <title>Orders</title>
+        <meta name="description" content="FreshCart| Oreders Page" />
+      </Helmet>
       {orders ? (
         <section>
           {orders.map((orders) => {

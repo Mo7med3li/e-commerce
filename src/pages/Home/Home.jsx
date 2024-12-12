@@ -4,6 +4,7 @@ import Loading from "../../components/Loading/Loading";
 import { useEffect, useState } from "react";
 import HomeSlider from "../../components/HomeSlider/HomeSlider";
 import CategorySlider from "../../components/CategorySlider/CategorySlider";
+import { Helmet } from "react-helmet";
 
 export default function Home() {
   const [products, setProducts] = useState(null);
@@ -21,6 +22,10 @@ export default function Home() {
 
   return (
     <>
+      <Helmet>
+        <title>Home Page</title>
+        <meta name="description" content="FreshCart| Home Page" />
+      </Helmet>
       <HomeSlider />
       <CategorySlider />
       {products === null ? (

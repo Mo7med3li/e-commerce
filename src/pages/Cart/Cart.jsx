@@ -3,6 +3,7 @@ import { CartContext } from "../../context/Cart.context";
 import Loading from "../../components/Loading/Loading";
 import CartItem from "../../components/CartItem/CartItem";
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet";
 
 export default function Cart() {
   const { getCartProducts, cartInfo, deleteCart } = useContext(CartContext);
@@ -11,6 +12,10 @@ export default function Cart() {
   }, []);
   return (
     <>
+      <Helmet>
+        <title>Cart </title>
+        <meta name="description" content="FreshCart| Cart Page " />
+      </Helmet>
       {cartInfo === null ? (
         <Loading />
       ) : (

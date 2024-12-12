@@ -9,6 +9,7 @@ import { SwiperSlide, Swiper } from "swiper/react";
 import "swiper/css";
 import Card from "../../components/Card/Card";
 import UseOnline from "../../hooks/UseOnline";
+import { Helmet } from "react-helmet";
 
 export default function ProductDetails() {
   const isOnline = UseOnline();
@@ -52,10 +53,20 @@ export default function ProductDetails() {
 
   return (
     <>
+      <Helmet>
+        <title>Products Details</title>
+        <meta
+          name="description"
+          content="FreshCart| Products Page details about the product"
+        />
+      </Helmet>
       {productinfo === null ? (
         <Loading />
       ) : (
         <>
+          <Helmet>
+            <title>{productinfo.title}</title>
+          </Helmet>
           <section>
             <div className="grid grid-cols-12  gap-8">
               <div className="col-span-3">

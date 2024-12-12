@@ -6,6 +6,7 @@ import { userContext } from "../../context/User.context";
 import axios from "axios";
 import { CartContext } from "../../context/Cart.context";
 import toast from "react-hot-toast";
+import { Helmet } from "react-helmet";
 
 export default function Checkout() {
   const { token } = useContext(userContext);
@@ -76,6 +77,10 @@ export default function Checkout() {
   }
   return (
     <>
+      <Helmet>
+        <title>Checkout </title>
+        <meta name="description" content="FreshCart| Checkout Page" />
+      </Helmet>
       <section>
         <h1 className="text-gray-600 font-semibold text-xl">
           Shipping Address

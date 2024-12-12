@@ -5,6 +5,7 @@ import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { object, string } from "yup";
 import { userContext } from "../../context/User.context";
+import { Helmet } from "react-helmet";
 
 export default function Login() {
   let { setToken } = useContext(userContext);
@@ -49,6 +50,10 @@ export default function Login() {
   });
   return (
     <>
+      <Helmet>
+        <title>Login </title>
+        <meta name="description" content="FreshCart| Login Page" />
+      </Helmet>
       <h3 className=" text-xl font-semibold text-slate-700">
         <i className="fa-regular fa-user mr-2"></i>
         Register Now
