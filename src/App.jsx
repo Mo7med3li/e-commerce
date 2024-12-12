@@ -15,6 +15,7 @@ import Cart from "./pages/Cart/Cart";
 import ProductDetails from "./pages/ProductDetails/ProductDetails";
 import Checkout from "./pages/Checkout/Checkout";
 import Orders from "./pages/Orders/Orders";
+import Offline from "./components/Offline/Offline";
 
 function App() {
   const router = createBrowserRouter([
@@ -55,6 +56,12 @@ function App() {
         </CartProvider>
       </UserProvider>
       <Toaster />
+      <Offline>
+        <div className="bg-gray-200 p-4 fixed rounded-lg shadow-lg text-gray-600 font-semibold bottom-10 right-2 z-50">
+          <i className="fa-solid fa-wifi mr-2"></i>
+          <span>Check Your Internet Connection</span>
+        </div>
+      </Offline>
     </>
   );
 }
