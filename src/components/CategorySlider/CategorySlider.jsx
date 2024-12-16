@@ -1,25 +1,12 @@
-import axios from "axios";
-import { useEffect, useState } from "react";
-import sliderImage3 from "../../assets/images/slider-image-3.jpeg";
+import { useContext, useEffect, useState } from "react";
 import Loading from "../Loading/Loading";
 import { SwiperSlide, Swiper } from "swiper/react";
 import "swiper/css";
-import { useQuery } from "@tanstack/react-query";
+import { CategoryContext } from "../../context/Category.context";
 
 export default function CategorySlider() {
-  async function getCategories() {
-    const options = {
-      url: "https://ecommerce.routemisr.com/api/v1/categories",
-      method: "GET",
-    };
-    return axios.request(options);
-  }
+  let { data, isLoading } = useContext(CategoryContext);
 
-  let { data, isLoading } = useQuery({
-    queryKey: ["categories"],
-    queryFn: getCategories,
-    staleTime: 60 * 60 * 100,
-  });
   if (isLoading) return <Loading />;
   return (
     <>

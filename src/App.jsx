@@ -18,6 +18,8 @@ import Orders from "./pages/Orders/Orders";
 import Offline from "./components/Offline/Offline";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import Categories from "./pages/Categories/Categories";
+import CategoryProvider from "./context/Category.context";
 
 function App() {
   const router = createBrowserRouter([
@@ -34,6 +36,7 @@ function App() {
         { path: "/products/:id", element: <ProductDetails /> },
         { path: "/checkout", element: <Checkout /> },
         { path: "/allorders", element: <Orders /> },
+        { path: "/categories", element: <Categories /> },
       ],
     },
     {
@@ -56,7 +59,9 @@ function App() {
       <QueryClientProvider client={myClient}>
         <UserProvider>
           <CartProvider>
-            <RouterProvider router={router} />
+            <CategoryProvider>
+              <RouterProvider router={router} />
+            </CategoryProvider>
           </CartProvider>
         </UserProvider>
         <Toaster />
