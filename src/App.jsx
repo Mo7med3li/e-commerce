@@ -20,6 +20,10 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import Categories from "./pages/Categories/Categories";
 import CategoryProvider from "./context/Category.context";
+import Wishlist from "./pages/Wishlist/Wishlist";
+import WishlistProvider from "./context/Wishlist.context";
+import ProductProvider from "./context/Product.context";
+import Products from "./pages/Products/Products";
 
 function App() {
   const router = createBrowserRouter([
@@ -37,6 +41,8 @@ function App() {
         { path: "/checkout", element: <Checkout /> },
         { path: "/allorders", element: <Orders /> },
         { path: "/categories", element: <Categories /> },
+        { path: "/wishlist", element: <Wishlist /> },
+        { path: "/products", element: <Products /> },
       ],
     },
     {
@@ -58,11 +64,15 @@ function App() {
     <>
       <QueryClientProvider client={myClient}>
         <UserProvider>
-          <CartProvider>
-            <CategoryProvider>
-              <RouterProvider router={router} />
-            </CategoryProvider>
-          </CartProvider>
+          <ProductProvider>
+            <WishlistProvider>
+              <CartProvider>
+                <CategoryProvider>
+                  <RouterProvider router={router} />
+                </CategoryProvider>
+              </CartProvider>
+            </WishlistProvider>
+          </ProductProvider>
         </UserProvider>
         <Toaster />
         <Offline>

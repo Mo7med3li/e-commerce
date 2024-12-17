@@ -1,25 +1,15 @@
 import axios from "axios";
 import Card from "../../components/Card/Card";
 import Loading from "../../components/Loading/Loading";
-import { useEffect, useState } from "react";
 import HomeSlider from "../../components/HomeSlider/HomeSlider";
 import CategorySlider from "../../components/CategorySlider/CategorySlider";
 import { Helmet } from "react-helmet";
 import { useQuery } from "@tanstack/react-query";
+import { useContext } from "react";
+import { ProductContext } from "../../context/Product.context";
 
 export default function Home() {
-  async function getProducts() {
-    const options = {
-      url: "https://ecommerce.routemisr.com/api/v1/products",
-      method: "GET",
-    };
-    return axios.request(options);
-  }
-  let { data, isLoading } = useQuery({
-    queryKey: ["products"],
-    queryFn: getProducts,
-    staleTime: 6 * 60 * 60 * 100,
-  });
+  let { data, isLoading } = useContext(ProductContext);
   if (isLoading) return <Loading />;
 
   return (

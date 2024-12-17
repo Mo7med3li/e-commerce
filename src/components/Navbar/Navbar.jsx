@@ -41,7 +41,7 @@ export default function Navbar() {
                         isActive ? "before:!w-full font-semibold" : ""
                       }`;
                     }}
-                    to="/products/1"
+                    to="/products"
                   >
                     Products
                   </NavLink>
@@ -56,6 +56,18 @@ export default function Navbar() {
                     to="/categories"
                   >
                     Categories
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    className={({ isActive }) => {
+                      return `before:absolute relative before:w-0  hover:before:w-full before:duration-300 before:transition-[width] before:h-0.5 before:bg-primary-500 before:left-0 before:-bottom-1 ${
+                        isActive ? "before:!w-full font-semibold" : ""
+                      }`;
+                    }}
+                    to="/wishlist"
+                  >
+                    Wishlist
                   </NavLink>
                 </li>
                 <li>
