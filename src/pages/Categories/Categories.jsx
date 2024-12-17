@@ -3,6 +3,7 @@ import { useContext, useState } from "react";
 import Loading from "../../components/Loading/Loading";
 
 import { CategoryContext } from "../../context/Category.context";
+import { Helmet } from "react-helmet";
 
 export default function Categories() {
   let { getCategories, getSubcategories, subcategories, data, isLoading } =
@@ -13,6 +14,10 @@ export default function Categories() {
 
   return (
     <>
+      <Helmet>
+        <title>Categories</title>
+        <meta name="description" content="FreshCart| Categories Component" />
+      </Helmet>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-12  ">
         {data.data.data.map((categories) => {
           return (

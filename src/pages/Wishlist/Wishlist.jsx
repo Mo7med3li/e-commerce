@@ -2,6 +2,7 @@ import { useContext, useEffect } from "react";
 import Loading from "../../components/Loading/Loading";
 import { WishlistContext } from "../../context/Wishlist.context";
 import { CartContext } from "../../context/Cart.context";
+import { Helmet } from "react-helmet";
 
 export default function Wishlist() {
   let { listInfo, getWishlst, deleteFromWishlist } =
@@ -12,6 +13,10 @@ export default function Wishlist() {
   }, []);
   return (
     <>
+      <Helmet>
+        <title>Wishlist</title>
+        <meta name="description" content="FreshCart| Wishlist Component" />
+      </Helmet>
       <div className="bg-gray-200 p-12">
         <h1 className="text-xl font-semibold">My Wish List</h1>
 
