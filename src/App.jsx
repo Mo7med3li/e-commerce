@@ -24,6 +24,7 @@ import Wishlist from "./pages/Wishlist/Wishlist";
 import WishlistProvider from "./context/Wishlist.context";
 import ProductProvider from "./context/Product.context";
 import Products from "./pages/Products/Products";
+import Brands from "./pages/Brands/Brands";
 
 function App() {
   const router = createBrowserRouter([
@@ -43,6 +44,7 @@ function App() {
         { path: "/categories", element: <Categories /> },
         { path: "/wishlist", element: <Wishlist /> },
         { path: "/products", element: <Products /> },
+        { path: "/brands", element: <Brands /> },
       ],
     },
     {
