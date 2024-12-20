@@ -17,11 +17,11 @@ export default function VerfiyCode() {
       resetCode: "",
     },
     onSubmit: (values) => {
-      forgetPasswordSubmit(values);
+      VerfiyCodeSubmit(values);
     },
     validationSchema,
   });
-  async function forgetPasswordSubmit(values) {
+  async function VerfiyCodeSubmit(values) {
     let toastId = toast.loading("sending your code...");
     try {
       const options = {
@@ -31,7 +31,7 @@ export default function VerfiyCode() {
       };
       let { data } = await axios.request(options);
       console.log(data);
-      if (data.statusMsg === "success") {
+      if (data.status === "Success") {
         toast.success("code sent");
         setTimeout(() => {
           navigate("/reset-password");
