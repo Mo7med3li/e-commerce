@@ -2,7 +2,7 @@ import axios from "axios";
 import { useFormik } from "formik";
 import React, { useContext, useState } from "react";
 import toast from "react-hot-toast";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { object, string } from "yup";
 import { userContext } from "../../context/User.context";
 import { Helmet } from "react-helmet";
@@ -75,7 +75,7 @@ export default function Login() {
           <p className="text-red-600">*{formik.errors.email}</p>
         )}
 
-        <div className="password space-y-2">
+        <div className="password space-y-2 ">
           <h3>password:</h3>
           <input
             type="password"
@@ -93,7 +93,14 @@ export default function Login() {
             <p className="text-red-600">*{emailPaswordError}</p>
           )}
         </div>
-
+        <div>
+          <Link
+            to="/forget-password"
+            className="font-semibold text-lg hover:text-primary-600 transition-colors duration-500"
+          >
+            forget your password ?
+          </Link>
+        </div>
         <button type="submit" className="btn w-full">
           login
         </button>

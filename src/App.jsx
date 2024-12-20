@@ -25,6 +25,7 @@ import WishlistProvider from "./context/Wishlist.context";
 import ProductProvider from "./context/Product.context";
 import Products from "./pages/Products/Products";
 import Brands from "./pages/Brands/Brands";
+import ForgetPassword from "./pages/ForgetPassword/ForgetPassword";
 
 function App() {
   const router = createBrowserRouter([
@@ -57,6 +58,7 @@ function App() {
       children: [
         { path: "/login", element: <Login /> },
         { path: "/signup", element: <Signup /> },
+        { path: "/forget-password", element: <ForgetPassword /> },
       ],
     },
   ]);
