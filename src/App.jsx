@@ -26,6 +26,7 @@ import ProductProvider from "./context/Product.context";
 import Products from "./pages/Products/Products";
 import Brands from "./pages/Brands/Brands";
 import ForgetPassword from "./pages/ForgetPassword/ForgetPassword";
+import VerfiyCode from "./pages/VerfiyCode/VerfiyCode";
 
 function App() {
   const router = createBrowserRouter([
@@ -59,6 +60,7 @@ function App() {
         { path: "/login", element: <Login /> },
         { path: "/signup", element: <Signup /> },
         { path: "/forget-password", element: <ForgetPassword /> },
+        { path: "/verfiy-code", element: <VerfiyCode /> },
       ],
     },
   ]);
