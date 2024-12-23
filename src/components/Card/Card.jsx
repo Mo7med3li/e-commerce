@@ -18,7 +18,7 @@ export default function Card({ productInfo }) {
 
   return (
     <>
-      <div className="card group/card rounded-lg shadow-lg overflow-hidden ">
+      <div className="card group/card rounded-lg shadow-lg overflow-hidden cursor-pointer ">
         <div className=" relative ">
           <img src={imageCover} alt="" className="object-cover" />
           <div className="card-layer absolute inset-0 w-full h-full bg-slate-400 flex items-center justify-center gap-3 bg-opacity-40 opacity-0 group-hover/card:opacity-100 transition-opacity duration-300">

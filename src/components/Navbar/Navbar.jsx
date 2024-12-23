@@ -220,7 +220,7 @@ export default function Navbar() {
             {token && (
               <li className=" " onClick={logOuT}>
                 <Link>
-                  <i className="fa-solid fa-right-from-bracket text-xl"></i>
+                  <i className="fa-solid fa-right-from-bracket text-xl "></i>
                 </Link>
               </li>
             )}

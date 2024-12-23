@@ -30,8 +30,8 @@ export default function Footer() {
               Share App Link
             </button>
           </div>
-          <div className="payments border-y-2 border-opacity-50 border-slate-300 flex justify-between items-center py-4 px-3 ">
-            <div className="payments-parteners flex items-center gap-5">
+          <div className="payments border-y-2 border-opacity-50 border-slate-300 flex  flex-wrap lg:flex-nowrap justify-between items-center py-4 px-3 ">
+            <div className="payments-parteners flex items-center gap-5 w-full lg:w-fit">
               <h4>Payment Partners</h4>
               <img src={amazon} alt="Amazon pay" className=" w-24" />
               <img src={Express} className=" w-24" alt="American express" />
