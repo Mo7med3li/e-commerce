@@ -14,7 +14,7 @@ export default function Card({ productInfo }) {
     id,
   } = productInfo;
   let { addProductToCart } = useContext(CartContext);
-  let { addToWishlist, getWishlst, listID } = useContext(WishlistContext);
+  let { addToWishlist, checkedProduct } = useContext(WishlistContext);
 
   return (
     <>
@@ -23,14 +23,18 @@ export default function Card({ productInfo }) {
           <img src={imageCover} alt="" className="object-cover" />
           <div className="card-layer absolute inset-0 w-full h-full bg-slate-400 flex items-center justify-center gap-3 bg-opacity-40 opacity-0 group-hover/card:opacity-100 transition-opacity duration-300">
             <div
-              className="icon cursor-pointer bg-primary-600  w-7 h-7 flex justify-center items-center rounded-full"
+              className={`icon cursor-pointer  ${
+                checkedProduct({ productId: id })
+                  ? "text-red-600 bg-primary-500"
+                  : "bg-primary-500 text-white"
+              }  w-7 h-7 flex justify-center items-center rounded-full `}
               onClick={() => {
                 addToWishlist({ productId: id });
-                getWishlst();
               }}
             >
               <i
-                className={`fa-solid fa-heart text-white
+                className={`fa-solid fa-heart
+                  }
                 `}
               ></i>
             </div>

@@ -5,9 +5,10 @@ import HomeSlider from "../../components/HomeSlider/HomeSlider";
 import CategorySlider from "../../components/CategorySlider/CategorySlider";
 import { Helmet } from "react-helmet";
 import { useQuery } from "@tanstack/react-query";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { ProductContext } from "../../context/Product.context";
 import { useFormik } from "formik";
+import { WishlistContext } from "../../context/Wishlist.context";
 
 export default function Home() {
   const formik = useFormik({
@@ -17,6 +18,11 @@ export default function Home() {
   });
   let { data, isLoading, searchProduct, productSearch } =
     useContext(ProductContext);
+  let { getWishlst } = useContext(WishlistContext);
+  useEffect(() => {
+    getWishlst();
+  }, []);
+
   if (isLoading) return <Loading />;
 
   return (

@@ -10,6 +10,7 @@ import "swiper/css";
 import Card from "../../components/Card/Card";
 import UseOnline from "../../hooks/UseOnline";
 import { Helmet } from "react-helmet";
+import { Autoplay } from "swiper/modules";
 
 export default function ProductDetails() {
   const isOnline = UseOnline();
@@ -122,7 +123,29 @@ export default function ProductDetails() {
             {relatedProduct === null ? (
               <Loading />
             ) : (
-              <Swiper slidesPerView={6} spaceBetween={15}>
+              <Swiper
+                slidesPerView={6}
+                spaceBetween={15}
+                modules={[Autoplay]}
+                autoplay={{
+                  delay: 2000,
+                  disableOnInteraction: false,
+                }}
+                breakpoints={{
+                  300: {
+                    slidesPerView: 2,
+                  },
+                  640: {
+                    slidesPerView: 3,
+                  },
+                  768: {
+                    slidesPerView: 4,
+                  },
+                  1024: {
+                    slidesPerView: 7,
+                  },
+                }}
+              >
                 {relatedProduct.map((product) => (
                   <SwiperSlide key={product.id}>
                     <Card productInfo={product} />

@@ -40,7 +40,7 @@ export default function Brands() {
       <h2 className="text-2xl  font-semibold text-primary-700 w-fit mx-auto">
         All Brands
       </h2>
-      <div className=" md:grid md:grid-cols-4 gap-12 py-7 relative">
+      <div className=" md:grid md:grid-cols-4 gap-12 py-7 relative cursor-pointer">
         <div
           className=" layer h-screen w-screen fixed hidden  bg-gray-600 bg-opacity-35 inset-0  justify-center  z-50 p-10"
           onClick={hide}

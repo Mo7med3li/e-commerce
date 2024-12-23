@@ -27,6 +27,8 @@ export default function WishlistProvider({ children }) {
       if (data.status === "success") {
         toast.success("Added To Wishlist");
         setListId(data.data);
+        getWishlst();
+        // setCheckProduct(true);
       }
     } catch (error) {
       console.log(error);
@@ -65,6 +67,13 @@ export default function WishlistProvider({ children }) {
       toast.dismiss(toastId);
     }
   }
+  function checkedProduct({ productId }) {
+    if (!listInfo) return false;
+    const productInfo = listInfo.find(
+      (productFind) => productFind.id === productId
+    );
+    return productInfo;
+  }
 
   return (
     <WishlistContext.Provider
@@ -74,6 +83,7 @@ export default function WishlistProvider({ children }) {
         getWishlst,
         deleteFromWishlist,
         listID,
+        checkedProduct,
       }}
     >
       {children}

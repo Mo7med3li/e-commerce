@@ -29,7 +29,7 @@ export default function Categories() {
 
                   setCategoryName(categories.name);
                 }}
-                className=" border-2 rounded-lg overflow-hidden border-gray-300 hover:shadow-primary-400 hover:shadow-lg transition-shadow duration-400"
+                className=" border-2 rounded-lg overflow-hidden border-gray-300 hover:shadow-primary-400 hover:shadow-lg transition-shadow duration-400 cursor-pointer"
               >
                 <div className="text-center">
                   <img
