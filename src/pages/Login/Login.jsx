@@ -56,7 +56,7 @@ export default function Login() {
       </Helmet>
       <h3 className=" text-xl font-semibold text-slate-700">
         <i className="fa-regular fa-user mr-2"></i>
-        Register Now
+        Welcome Back
       </h3>
       <form className="space-y-4 py-4" onSubmit={formik.handleSubmit}>
         <div className="email space-y-2">

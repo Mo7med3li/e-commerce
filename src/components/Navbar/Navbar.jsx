@@ -189,7 +189,7 @@ export default function Navbar() {
           >
             {!token && (
               <>
-                <div>
+                <div className="flex gap-4">
                   <li className=" ">
                     <NavLink
                       className={({ isActive }) => {

@@ -62,7 +62,7 @@ function App() {
         { path: "/signup", element: <Signup /> },
         { path: "/forget-password", element: <ForgetPassword /> },
         { path: "/verfiy-code", element: <VerfiyCode /> },
-        { path: "//reset-password", element: <ResetPassword /> },
+        { path: "/reset-password", element: <ResetPassword /> },
       ],
     },
   ]);
