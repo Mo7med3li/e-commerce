@@ -1,12 +1,10 @@
-import { useState } from "react";
-
 import "./App.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Layout from "./components/Layout/Layout";
-import Login from "./pages/Login/Login";
-import Signup from "./pages/Signup/Signup";
+import Login from "./pages/auth/Login/Login";
+import Signup from "./pages/auth/Signup/Signup";
 import Home from "./pages/Home/Home";
-import { ToastBar, Toaster } from "react-hot-toast";
+import { Toaster } from "react-hot-toast";
 import ProtectedRoute from "./components/proutectedRoute/ProtectedRoute";
 import GuestedRoute from "./components/GuestedRoute/GuestedRoute";
 import UserProvider from "./context/User.context";
@@ -25,9 +23,9 @@ import WishlistProvider from "./context/Wishlist.context";
 import ProductProvider from "./context/Product.context";
 import Products from "./pages/Products/Products";
 import Brands from "./pages/Brands/Brands";
-import ForgetPassword from "./pages/ForgetPassword/ForgetPassword";
-import VerfiyCode from "./pages/VerfiyCode/VerfiyCode";
-import ResetPassword from "./pages/ResetPassword/ResetPassword";
+import ForgetPassword from "./pages/auth/ForgetPassword/ForgetPassword";
+import VerfiyCode from "./pages/auth/VerfiyCode/VerfiyCode";
+import ResetPassword from "./pages/auth/ResetPassword/ResetPassword";
 
 function App() {
   const router = createBrowserRouter([
