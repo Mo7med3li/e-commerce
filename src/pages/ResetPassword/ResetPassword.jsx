@@ -1,103 +1,58 @@
-import axios from "axios";
-import { useFormik } from "formik";
-import React, { useState } from "react";
 import { Helmet } from "react-helmet";
-import toast from "react-hot-toast";
-import { useNavigate } from "react-router-dom";
-import { object, string } from "yup";
+import { Link } from "react-router-dom";
+import ResetPasswordForm from "./components/reset-passwod-form";
 
 export default function ResetPassword() {
-  const passwordRegex =
-    /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{8,}$/;
-  const navigate = useNavigate();
-  let [emailError, setEmailError] = useState(null);
-  const validationSchema = object({
-    email: string().required("Email is required").email("Enter Valid Email"),
-    newPassword: string()
-      .required("Password is required")
-      .matches(
-        passwordRegex,
-        "Password should be minimum eight characters, at least one upper case, one lower case English letter, one number and one special character"
-      ),
-  });
-  const formik = useFormik({
-    initialValues: {
-      email: "",
-      newPassword: "",
-    },
-    onSubmit: (values) => {
-      resetPasswordSubmit(values);
-    },
-    validationSchema,
-  });
-  async function resetPasswordSubmit(values) {
-    let toastId = toast.loading("Resering your password...");
-    try {
-      const options = {
-        url: "https://ecommerce.routemisr.com/api/v1/auth/resetPassword",
-        method: "PUT",
-        data: values,
-      };
-      let { data } = await axios.request(options);
-      console.log(data);
-
-      toast.success("Password reseted");
-      setTimeout(() => {
-        navigate("/");
-      }, 2000);
-    } catch (error) {
-      setEmailError(error.response.data.message);
-      toast.error(error.response.data.message);
-    } finally {
-      toast.dismiss(toastId);
-    }
-  }
   return (
     <>
       <Helmet>
-        <title>reset-Password</title>
-        <meta name="description" content="FreshCart| ResetPassword" />
+        <title>Reset Password</title>
+        <meta name="description" content="FreshCart| Reset Password Page" />
       </Helmet>
-      <h1 className="font-semibold text-2xl">please enter your email</h1>
-      <form action="" className="my-5 space-y-4" onSubmit={formik.handleSubmit}>
-        <div className="">
-          <input
-            type="email"
-            className="form-controll w-full py-3"
-            placeholder="Email"
-            value={formik.values.email}
-            name="email"
-            onChange={formik.handleChange}
-          />
-          {formik.errors.email && (
-            <p className="pt-3 text-red-600 text-lg ">
-              * {formik.errors.email}
-            </p>
-          )}
-          {emailError && (
-            <p className="pt-3 text-red-600 text-lg ">* {emailError}</p>
-          )}
-        </div>
-        <div className="">
-          <input
-            type="password"
-            className="form-controll w-full py-3"
-            placeholder="Password"
-            value={formik.values.newPassword}
-            name="newPassword"
-            onChange={formik.handleChange}
-          />
-          {formik.errors.newPassword && (
-            <p className="py-3  text-red-600 text-lg ">
-              * {formik.errors.newPassword}
-            </p>
-          )}
-        </div>
 
-        <button type="submit" className="btn">
-          reset password
-        </button>
-      </form>
+      {/* Main Container */}
+      <div className="min-h-screen bg-gradient-to-br from-primary-50 to-primary-100 flex items-center justify-center p-4">
+        <div className="w-full max-w-md">
+          {/* Reset Password Card */}
+          <div className="bg-white rounded-2xl shadow-xl p-8 md:p-10 border border-primary-100">
+            {/* Header */}
+            <div className="text-center mb-8">
+              <div className="inline-flex items-center justify-center w-16 h-16 bg-primary-100 rounded-full mb-4">
+                <i className="fa-solid fa-lock-open text-2xl text-primary-600"></i>
+              </div>
+              <h1 className="text-2xl md:text-3xl font-bold text-slate-800 mb-2">
+                Reset Your Password
+              </h1>
+              <p className="text-slate-600 text-sm md:text-base">
+                Enter your email and new password to reset your account
+              </p>
+            </div>
+
+            {/* Form */}
+            <ResetPasswordForm />
+
+            {/* Footer */}
+            <div className="mt-8 text-center">
+              <p className="text-slate-600 text-sm">
+                Remember your password?{" "}
+                <Link
+                  to="/login"
+                  className="font-medium text-primary-600 hover:text-primary-700 transition-colors duration-200 hover:underline"
+                >
+                  Sign in here
+                </Link>
+              </p>
+            </div>
+          </div>
+
+          {/* Additional Info */}
+          <div className="mt-6 text-center">
+            <p className="text-xs text-slate-500">
+              Make sure to use a strong password to keep your account secure
+            </p>
+          </div>
+        </div>
+      </div>
     </>
   );
 }

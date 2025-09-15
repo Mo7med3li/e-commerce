@@ -1,79 +1,53 @@
-import axios from "axios";
-import { useFormik } from "formik";
-import React, { useState } from "react";
 import { Helmet } from "react-helmet";
-import toast from "react-hot-toast";
-import { useNavigate } from "react-router-dom";
-import { object, string } from "yup";
+import VerfiyCodeForm from "./components/verfiy-form";
 
 export default function VerfiyCode() {
-  const navigate = useNavigate();
-  let [codeError, setcodeError] = useState(null);
-  const validationSchema = object({
-    resetCode: string().required("Code is required"),
-  });
-  const formik = useFormik({
-    initialValues: {
-      resetCode: "",
-    },
-    onSubmit: (values) => {
-      VerfiyCodeSubmit(values);
-    },
-    validationSchema,
-  });
-  async function VerfiyCodeSubmit(values) {
-    let toastId = toast.loading("sending your code...");
-    try {
-      const options = {
-        url: "https://ecommerce.routemisr.com/api/v1/auth/verifyResetCode",
-        method: "POST",
-        data: values,
-      };
-      let { data } = await axios.request(options);
-      console.log(data);
-      if (data.status === "Success") {
-        toast.success("code sent");
-        setTimeout(() => {
-          navigate("/reset-password");
-        }, 2000);
-      }
-    } catch (error) {
-      setcodeError(error.response.data.message);
-      toast.error(error.response.data.message);
-    } finally {
-      toast.dismiss(toastId);
-    }
-  }
   return (
     <>
       <Helmet>
-        <title>Verfiy-code</title>
-        <meta name="description" content="FreshCart|] verfiy code" />
+        <title>Verify Code</title>
+        <meta name="description" content="FreshCart| Verify Code Page" />
       </Helmet>
-      <h1 className="font-semibold text-2xl">please enter your code</h1>
-      <form action="" className="my-5" onSubmit={formik.handleSubmit}>
-        <div className="py-4">
-          <input
-            type="text"
-            className="form-controll w-full py-3"
-            placeholder="code"
-            value={formik.values.resetCode}
-            name="resetCode"
-            onChange={formik.handleChange}
-          />
+
+      {/* Main Container */}
+      <div className="min-h-screen bg-gradient-to-br from-primary-50 to-primary-100 flex items-center justify-center p-4">
+        <div className="w-full max-w-md">
+          {/* Verify Code Card */}
+          <div className="bg-white rounded-2xl shadow-xl p-8 md:p-10 border border-primary-100">
+            {/* Header */}
+            <div className="text-center mb-8">
+              <div className="inline-flex items-center justify-center w-16 h-16 bg-primary-100 rounded-full mb-4">
+                <i className="fa-solid fa-shield-check text-2xl text-primary-600"></i>
+              </div>
+              <h1 className="text-2xl md:text-3xl font-bold text-slate-800 mb-2">
+                Verify Your Code
+              </h1>
+              <p className="text-slate-600 text-sm md:text-base">
+                Please enter the verification code sent to your email
+              </p>
+            </div>
+
+            {/* Form */}
+            <VerfiyCodeForm />
+            {/* Footer */}
+            <div className="mt-8 text-center">
+              <p className="text-slate-600 text-sm">
+                Didn&apos;t receive the code?{" "}
+                <button className="font-medium text-primary-600 hover:text-primary-700 transition-colors duration-200 hover:underline">
+                  Resend Code
+                </button>
+              </p>
+            </div>
+          </div>
+
+          {/* Additional Info */}
+          <div className="mt-6 text-center">
+            <p className="text-xs text-slate-500">
+              Check your email inbox and spam folder for the verification code
+            </p>
+          </div>
         </div>
-        {formik.errors.resetCode && (
-          <p className="pb-3 text-red-600 text-lg ">
-            * {formik.errors.resetCode}
-          </p>
-        )}
-        {codeError && (
-          <p className="pb-3 text-red-600 text-lg ">* {codeError}</p>
-        )}
-        <button type="submit" className="btn">
-          Verfiy
-        </button>
-      </form>
+      </div>
     </>
   );
 }

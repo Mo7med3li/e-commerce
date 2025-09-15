@@ -1,10 +1,8 @@
-import axios from "axios";
 import Card from "../../components/Card/Card";
 import Loading from "../../components/Loading/Loading";
 import HomeSlider from "../../components/HomeSlider/HomeSlider";
 import CategorySlider from "../../components/CategorySlider/CategorySlider";
 import { Helmet } from "react-helmet";
-import { useQuery } from "@tanstack/react-query";
 import { useContext, useEffect } from "react";
 import { ProductContext } from "../../context/Product.context";
 import { useFormik } from "formik";

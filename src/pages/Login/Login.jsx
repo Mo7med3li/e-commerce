@@ -1,110 +1,65 @@
-import axios from "axios";
-import { useFormik } from "formik";
-import React, { useContext, useState } from "react";
-import toast from "react-hot-toast";
-import { Link, useNavigate } from "react-router-dom";
-import { object, string } from "yup";
-import { userContext } from "../../context/User.context";
 import { Helmet } from "react-helmet";
+import { Link } from "react-router-dom";
+import LoginForm from "./components/login-form";
 
 export default function Login() {
-  let { setToken } = useContext(userContext);
-  const navigate = useNavigate();
-  const [emailPaswordError, setEmailPasswordError] = useState(null);
-  const validationSchema = object({
-    email: string().required("Email is required"),
-    password: string().required("Password is required"),
-  });
-  async function sendLoginData(values) {
-    let loadingToast = toast.loading("waiting");
-    try {
-      const options = {
-        url: "https://ecommerce.routemisr.com/api/v1/auth/signin",
-        method: "POST",
-        data: values,
-      };
-      const { data } = await axios.request(options);
-
-      if (data.message === "success") {
-        localStorage.setItem("token", data.token);
-        setToken(data.token);
-        toast.success("Login Completed");
-        setTimeout(() => {
-          navigate("/");
-        }, 2000);
-      }
-    } catch (error) {
-      setEmailPasswordError(error.response.data.message);
-      toast.error(error.response.data.message);
-    } finally {
-      toast.dismiss(loadingToast);
-    }
-  }
-  let formik = useFormik({
-    initialValues: {
-      email: "",
-      password: "",
-    },
-    onSubmit: sendLoginData,
-    validationSchema,
-  });
   return (
     <>
       <Helmet>
         <title>Login </title>
         <meta name="description" content="FreshCart| Login Page" />
       </Helmet>
-      <h3 className=" text-xl font-semibold text-slate-700">
-        <i className="fa-regular fa-user mr-2"></i>
-        Welcome Back
-      </h3>
-      <form className="space-y-4 py-4" onSubmit={formik.handleSubmit}>
-        <div className="email space-y-2">
-          <h3>email:</h3>
-          <input
-            type="email"
-            placeholder="Type your email address"
-            className=" form-controll w-full"
-            value={formik.values.email}
-            name="email"
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-          />
-        </div>
-        {formik.errors.email && formik.touched.email && (
-          <p className="text-red-600">*{formik.errors.email}</p>
-        )}
 
-        <div className="password space-y-2 ">
-          <h3>password:</h3>
-          <input
-            type="password"
-            placeholder="Type your password"
-            className=" form-controll w-full"
-            value={formik.values.password}
-            onChange={formik.handleChange}
-            name="password"
-            onBlur={formik.handleBlur}
-          />
-          {formik.errors.password && formik.touched.password && (
-            <p className="text-red-600">*{formik.errors.password}</p>
-          )}
-          {emailPaswordError && (
-            <p className="text-red-600">*{emailPaswordError}</p>
-          )}
+      {/* Main Container */}
+      <div className="min-h-screen bg-gradient-to-br from-primary-50 to-primary-100 flex items-center justify-center p-4">
+        <div className="w-full max-w-md">
+          {/* Login Card */}
+          <div className="bg-white rounded-2xl shadow-xl p-8 md:p-10 border border-primary-100">
+            {/* Header */}
+            <div className="text-center mb-8">
+              <div className="inline-flex items-center justify-center w-16 h-16 bg-primary-100 rounded-full mb-4">
+                <i className="fa-regular fa-user text-2xl text-primary-600"></i>
+              </div>
+              <h1 className="text-2xl md:text-3xl font-bold text-slate-800 mb-2">
+                Welcome Back
+              </h1>
+              <p className="text-slate-600 text-sm md:text-base">
+                Sign in to your account to continue
+              </p>
+            </div>
+
+            {/* Form */}
+            <LoginForm />
+
+            {/* Footer */}
+            <div className="mt-8 text-center">
+              <p className="text-slate-600 text-sm">
+                Don&apos;t have an account?{" "}
+                <Link
+                  to="/signup"
+                  className="font-medium text-primary-600 hover:text-primary-700 transition-colors duration-200 hover:underline"
+                >
+                  Sign up here
+                </Link>
+              </p>
+            </div>
+          </div>
+
+          {/* Additional Info */}
+          <div className="mt-6 text-center">
+            <p className="text-xs text-slate-500">
+              By signing in, you agree to our{" "}
+              <a href="#" className="text-primary-600 hover:underline">
+                Terms of Service
+              </a>{" "}
+              and{" "}
+              <a href="#" className="text-primary-600 hover:underline">
+                Privacy Policy
+              </a>
+            </p>
+          </div>
         </div>
-        <div>
-          <Link
-            to="/forget-password"
-            className="font-semibold text-lg hover:text-primary-600 transition-colors duration-500"
-          >
-            forget your password ?
-          </Link>
-        </div>
-        <button type="submit" className="btn w-full">
-          login
-        </button>
-      </form>
+      </div>
     </>
   );
 }

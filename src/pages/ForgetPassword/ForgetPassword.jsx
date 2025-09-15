@@ -1,77 +1,58 @@
-import axios from "axios";
-import { useFormik } from "formik";
-import React, { useState } from "react";
 import { Helmet } from "react-helmet";
-import toast from "react-hot-toast";
-import { useNavigate } from "react-router-dom";
-import { object, string } from "yup";
+import { Link } from "react-router-dom";
+import ForgetPasswordForm from "./components/forget-password-form";
 
 export default function ForgetPassword() {
-  const navigate = useNavigate();
-  let [emailError, setEmailError] = useState(null);
-  const validationSchema = object({
-    email: string().required("Email is required").email("Enter Valid Email"),
-  });
-  const formik = useFormik({
-    initialValues: {
-      email: "",
-    },
-    onSubmit: (values) => {
-      forgetPasswordSubmit(values);
-    },
-    validationSchema,
-  });
-  async function forgetPasswordSubmit(values) {
-    let toastId = toast.loading("sending your Email...");
-    try {
-      const options = {
-        url: "https://ecommerce.routemisr.com/api/v1/auth/forgotPasswords",
-        method: "POST",
-        data: values,
-      };
-      let { data } = await axios.request(options);
-      console.log(data);
-      if (data.statusMsg === "success") {
-        toast.success(data.message);
-        setTimeout(() => {
-          navigate("/verfiy-code");
-        }, 2000);
-      }
-    } catch (error) {
-      setEmailError(error.response.data.message);
-      toast.error(error.response.data.message);
-    } finally {
-      toast.dismiss(toastId);
-    }
-  }
   return (
     <>
       <Helmet>
-        <title>forget-password</title>
-        <meta name="description" content="FreshCart| forget password" />
+        <title>Forgot Password</title>
+        <meta name="description" content="FreshCart| Forgot Password Page" />
       </Helmet>
-      <h1 className="font-semibold text-2xl">please enter your email</h1>
-      <form action="" className="my-5" onSubmit={formik.handleSubmit}>
-        <div className="py-4">
-          <input
-            type="email"
-            className="form-controll w-full py-3"
-            placeholder="Email"
-            value={formik.values.email}
-            name="email"
-            onChange={formik.handleChange}
-          />
+
+      {/* Main Container */}
+      <div className="min-h-screen bg-gradient-to-br from-primary-50 to-primary-100 flex items-center justify-center p-4">
+        <div className="w-full max-w-md">
+          {/* Forgot Password Card */}
+          <div className="bg-white rounded-2xl shadow-xl p-8 md:p-10 border border-primary-100">
+            {/* Header */}
+            <div className="text-center mb-8">
+              <div className="inline-flex items-center justify-center w-16 h-16 bg-primary-100 rounded-full mb-4">
+                <i className="fa-solid fa-key text-2xl text-primary-600"></i>
+              </div>
+              <h1 className="text-2xl md:text-3xl font-bold text-slate-800 mb-2">
+                Forgot Password?
+              </h1>
+              <p className="text-slate-600 text-sm md:text-base">
+                No worries! Enter your email and we&apos;ll send you a reset
+                link
+              </p>
+            </div>
+
+            {/* Form */}
+            <ForgetPasswordForm />
+            {/* Footer */}
+            <div className="mt-8 text-center">
+              <p className="text-slate-600 text-sm">
+                Remember your password?{" "}
+                <Link
+                  to="/login"
+                  className="font-medium text-primary-600 hover:text-primary-700 transition-colors duration-200 hover:underline"
+                >
+                  Sign in here
+                </Link>
+              </p>
+            </div>
+          </div>
+
+          {/* Additional Info */}
+          <div className="mt-6 text-center">
+            <p className="text-xs text-slate-500">
+              We&apos;ll send you a verification code to reset your password
+            </p>
+          </div>
         </div>
-        {formik.errors.email && (
-          <p className="pb-3 text-red-600 text-lg ">* {formik.errors.email}</p>
-        )}
-        {emailError && (
-          <p className="pb-3 text-red-600 text-lg ">* {emailError}</p>
-        )}
-        <button type="submit" className="btn">
-          Verfiy
-        </button>
-      </form>
+      </div>
     </>
   );
 }
