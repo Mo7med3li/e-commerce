@@ -9,7 +9,7 @@ export default function CartItem({ productInfo }) {
 
   return (
     <>
-      <div className=" flex gap-6  ">
+      <div className=" flex gap-6">
         <div className="cart-item flex items-center justify-between grow bg-gray-100 py-4 px-6 rounded-lg ">
           <img
             src={product.imageCover}
