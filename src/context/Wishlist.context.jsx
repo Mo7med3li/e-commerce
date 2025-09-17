@@ -27,7 +27,7 @@ export default function WishlistProvider({ children }) {
       if (data.status === "success") {
         toast.success("Added To Wishlist");
         setListId(data.data);
-        getWishlst();
+        getWishList();
         // setCheckProduct(true);
       }
     } catch (error) {
@@ -37,7 +37,7 @@ export default function WishlistProvider({ children }) {
     }
   }
 
-  async function getWishlst() {
+  async function getWishList() {
     const options = {
       url: "https://ecommerce.routemisr.com/api/v1/wishlist",
       method: "GET",
@@ -60,7 +60,7 @@ export default function WishlistProvider({ children }) {
 
       if (data.status === "success") {
         toast.success(data.message);
-        getWishlst();
+        getWishList();
       }
     } catch (error) {
     } finally {
@@ -80,7 +80,7 @@ export default function WishlistProvider({ children }) {
       value={{
         addToWishlist,
         listInfo,
-        getWishlst,
+        getWishList,
         deleteFromWishlist,
         listID,
         checkedProduct,

@@ -8,55 +8,85 @@ export default function CartItem({ productInfo }) {
   const { deleteCartProduct, UPdateProdcuntCount } = useContext(CartContext);
 
   return (
-    <>
-      <div className=" flex gap-6">
-        <div className="cart-item flex items-center justify-between grow bg-gray-100 py-4 px-6 rounded-lg ">
+    <div className="bg-gray-50 rounded-lg border border-gray-200 p-4 hover:shadow-md transition-shadow duration-200">
+      <div className="flex items-center space-x-4">
+        {/* Product Image */}
+        <div className="flex-shrink-0">
           <img
             src={product.imageCover}
             alt={product.title}
-            className="w-24 h-24 rounded-full border-4 border-white object-cover"
+            className="w-20 h-20 rounded-lg object-cover border border-gray-200"
           />
-          <h3 className="text-lg text-gray-700 font-semibold">
-            <Link to={`/products/${product.id}`}> {product.title}</Link>
-          </h3>
+        </div>
 
-          <h4 className="  text-gray-500 font-semibold">
-            {product.category.name}
-          </h4>
-          <div className="count flex gap-5 items-center">
-            <span className="text-xl  font-bold text-gray-600">{count}</span>
-            <div className="icons flex flex-col gap-2">
-              <i
-                className="fa-solid fa-circle-plus text-lg cursor-pointer"
+        {/* Product Info */}
+        <div className="flex-grow min-w-0">
+          <div className="flex items-start justify-between">
+            <div className="flex-grow">
+              <h3 className="text-lg font-semibold text-gray-900 mb-1 line-clamp-2">
+                <Link
+                  to={`/products/${product.id}`}
+                  className="hover:text-primary-600 transition-colors duration-200"
+                >
+                  {product.title}
+                </Link>
+              </h3>
+              <p className="text-sm text-gray-500 mb-2">
+                Category:{" "}
+                <span className="font-medium">{product.category.name}</span>
+              </p>
+              <div className="text-xl font-bold text-primary-600">
+                {price} L.E
+              </div>
+            </div>
+
+            {/* Quantity Controls */}
+            <div className="flex items-center space-x-3 ml-4">
+              <div className="flex items-center space-x-2 bg-white rounded-lg border border-gray-200 p-1">
+                <button
+                  className="w-8 h-8 flex items-center justify-center rounded-md hover:bg-gray-100 transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+                  onClick={() => {
+                    UPdateProdcuntCount({
+                      productId: product.id,
+                      count: count - 1,
+                    });
+                  }}
+                  disabled={count <= 1}
+                >
+                  <i className="fa-solid fa-minus text-sm text-gray-600"></i>
+                </button>
+
+                <span className="w-8 text-center font-semibold text-gray-900">
+                  {count}
+                </span>
+
+                <button
+                  className="w-8 h-8 flex items-center justify-center rounded-md hover:bg-gray-100 transition-colors duration-200"
+                  onClick={() => {
+                    UPdateProdcuntCount({
+                      productId: product.id,
+                      count: count + 1,
+                    });
+                  }}
+                >
+                  <i className="fa-solid fa-plus text-sm text-gray-600"></i>
+                </button>
+              </div>
+
+              {/* Remove Button */}
+              <button
+                className="w-10 h-10 flex items-center justify-center bg-red-50 hover:bg-red-100 text-red-600 rounded-lg transition-colors duration-200"
                 onClick={() => {
-                  UPdateProdcuntCount({
-                    productId: product.id,
-                    count: count + 1,
-                  });
+                  deleteCartProduct({ productId: product.id });
                 }}
-              ></i>
-              <i
-                className="fa-solid fa-circle-minus  text-lg cursor-pointer"
-                onClick={() => {
-                  UPdateProdcuntCount({
-                    productId: product.id,
-                    count: count - 1,
-                  });
-                }}
-              ></i>
+                title="Remove item"
+              >
+                <i className="fa-solid fa-trash text-sm"></i>
+              </button>
             </div>
           </div>
-          <h5>{price} L.E</h5>
         </div>
-        <button
-          className="remove  flex items-center bg-gray-100 justify-center rounded-lg p-4  hover:bg-gray-200 transition-colors duration-300"
-          onClick={() => {
-            deleteCartProduct({ productId: product.id });
-          }}
-        >
-          <i className="fa-solid fa-circle-xmark"></i>
-        </button>
       </div>
-    </>
+    </div>
   );
 }
